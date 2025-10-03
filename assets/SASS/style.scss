@@ -516,6 +516,9 @@ body {
   }
 
   &.closing {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
     animation: fadeOut 0.3s ease;
 
     .cart-modal-content {

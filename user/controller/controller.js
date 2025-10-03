@@ -329,6 +329,7 @@ function checkout() {
     // Clear giỏ hàng và lưu vào localStorage
     cart = [];
     renderCart();
+    updateCartCount(); // Cập nhật số lượng trên nút popup
     saveCartToStorage();
 
     console.log("Thanh toán thành công, đã xóa giỏ hàng");
@@ -347,6 +348,7 @@ function clearCart() {
   if (confirm("Bạn có chắc chắn muốn xóa toàn bộ giỏ hàng không?")) {
     cart = [];
     renderCart();
+    updateCartCount(); // Cập nhật số lượng trên nút popup
     saveCartToStorage();
     showNotification("Đã xóa toàn bộ giỏ hàng!", "info");
     console.log("Đã xóa toàn bộ giỏ hàng");
@@ -359,10 +361,10 @@ function toggleCartModal() {
   if (modal.classList.contains("show")) {
     // Thêm class closing để kích hoạt animation chìm xuống
     modal.classList.add("closing");
-    modal.classList.remove("show");
 
     setTimeout(() => {
       modal.style.display = "none";
+      modal.classList.remove("show");
       modal.classList.remove("closing");
     }, 300);
   } else {

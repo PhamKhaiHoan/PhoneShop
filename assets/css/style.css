@@ -485,6 +485,15 @@ body {
           justify-content: center;
 }
 .cart-modal.closing {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-animation: fadeOut 0.3s ease;
           animation: fadeOut 0.3s ease;
 }
