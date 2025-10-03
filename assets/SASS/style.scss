@@ -838,3 +838,72 @@ body {
     }
   }
 }
+
+// // === ADMIN PAGE STYLES ===
+// .admin-body {
+//   background: $primary-gradient;
+//   @include flex-center;
+//   padding: $spacing-xl;
+
+//   .admin-container {
+//     background: rgba($white, 0.95);
+//     border-radius: $border-radius-xl;
+//     box-shadow: $shadow-card;
+//     padding: $spacing-xl $spacing-lg;
+//     width: 95%;
+//     max-width: 1200px;
+
+//     h1 {
+//       text-align: center;
+//       font-size: $font-size-title;
+//       margin-bottom: $spacing-md;
+//       color: $text-primary;
+//     }
+
+//     .actions {
+//       display: flex;
+//       gap: $spacing-sm;
+//       justify-content: center;
+//       flex-wrap: wrap;
+//       margin-bottom: $spacing-md;
+
+//       input, select, button {
+//         padding: 10px 14px;
+//         border-radius: $border-radius;
+//         border: 1px solid $border-light;
+//         font-size: $font-size-base;
+//       }
+
+//       #btnOpenCreate {
+//         @include gradient-button($admin-color, $admin-color-dark, $admin-color-dark);
+//         border: none; color: $white; font-weight: bold; cursor: pointer;
+//       }
+//     }
+
+//     table {
+//       width: 100%;
+//       border-collapse: collapse;
+//       box-shadow: $shadow-light;
+//       font-size: $font-size-base;
+
+//       th, td { padding: 12px; border-bottom: 1px solid $border-divider; text-align: center; }
+//       th { background: $text-light; font-weight: bold; }
+//       td img { border-radius: 8px; }
+
+//       button { padding: 6px 12px; margin: 0 4px; border-radius: $border-radius; border: none; cursor: pointer; }
+//       [data-act="edit"] { background: #ffeaa7; }
+//       [data-act="del"]  { background: #fab1a0; }
+//     }
+//   }
+// }
+
+// @media (max-width: 768px) {
+//   .admin-body {
+//     padding: $spacing-md;
+//     .admin-container {
+//       padding: $spacing-md;
+//       table { font-size: .9rem; th, td { padding: 6px; } }
+//     }
+//   }
+// }
+

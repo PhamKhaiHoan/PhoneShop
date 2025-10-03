@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PhoneShop - Admin</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+  </head>
+  <body class="admin-body">
+    <nav class="navbar navbar-dark bg-dark navbar-expand">
+      <div class="container-fluid px-4">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+          <span>Phone Shop</span>
+        </a>
+        <ul class="navbar-nav ms-auto align-items-center gap-4">
+          <li class="nav-item">
+            <a
+              class="nav-link d-flex flex-column align-items-center"
+              href="../../homepage.html"
+              ><i class="bi bi-house fs-4"></i
+              ><span class="small">Home</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link d-flex flex-column align-items-center"
+              href="../../user/view/user.html"
+              ><i class="bi bi-shop fs-4"></i
+              ><span class="small">Store</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link d-flex flex-column align-items-center disabled"
+              href="#"
+              ><i class="bi bi-cart fs-4"></i><span class="small">Cart</span></a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="pm-wrap">
+      <div class="pm-card shadow-sm rounded-4 overflow-hidden">
+        <!-- Header  -->
+        <div class="pm-header">
+          <h2 class="pm-title">Phone Management</h2>
+
+          <div class="pm-tools d-flex align-items-center gap-2 flex-wrap">
+            <input
+              id="qSearch"
+              type="search"
+              class="form-control form-control-sm pm-search"
+              placeholder="Search by name…"
+            />
+            <select id="selSort" class="form-select form-select-sm pm-sort">
+              <option value="none">Sort: Default</option>
+              <option value="price_asc">Price: Low to High</option>
+              <option value="price_desc">Price: High to Low</option>
+            </select>
+
+            <button id="btnOpenCreate" class="pm-add pm-add--teal">
+              <span class="pm-add__icon"><i class="bi bi-plus"></i></span>
+              <span>Add Phone</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="table-responsive bg-white">
+          <table class="pm-table table align-middle mb-0">
+            <thead>
+              <tr>
+                <th style="width: 90px">#</th>
+                <th>Name</th>
+                <th style="width: 160px">Price</th>
+                <th style="width: 160px">Photo</th>
+                <th>Description</th>
+                <th style="width: 160px"><i class="bi bi-gear"></i> Action</th>
+              </tr>
+            </thead>
+            <tbody id="tblDanhSachSanPham"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <!-- MODAL -->
+    <dialog id="productModal" class="pm-modal rounded-4">
+      <form id="productForm" class="pm-form" autocomplete="off" novalidate>
+        <h2 class="text-center mb-4">Phone Management</h2>
+        <input type="hidden" id="id" />
+
+        <div class="input-group pm-input mb-3">
+          <span class="input-group-text"><i class="bi bi-phone"></i></span>
+          <input id="name" class="form-control" placeholder="Phone name" />
+        </div>
+        <small class="error" data-err="name"></small>
+
+        <div class="input-group pm-input mb-3">
+          <span class="input-group-text"
+            ><i class="bi bi-currency-dollar"></i
+          ></span>
+          <input
+            id="price"
+            type="number"
+            inputmode="decimal"
+            class="form-control"
+            placeholder="Price"
+          />
+        </div>
+        <small class="error" data-err="price"></small>
+
+        <div class="input-group pm-input mb-3">
+          <span class="input-group-text"><i class="bi bi-phone"></i></span>
+          <input id="screen" class="form-control" placeholder="Screen" />
+        </div>
+        <small class="error" data-err="screen"></small>
+
+        <div class="input-group pm-input mb-3">
+          <span class="input-group-text"><i class="bi bi-camera"></i></span>
+          <input
+            id="frontCamera"
+            class="form-control"
+            placeholder="Front camera"
+          />
+        </div>
+        <small class="error" data-err="frontCamera"></small>
+
+        <div class="input-group pm-input mb-3">
+          <span class="input-group-text"><i class="bi bi-camera"></i></span>
+          <input
+            id="backCamera"
+            class="form-control"
+            placeholder="Back camera"
+          />
+        </div>
+        <small class="error" data-err="backCamera"></small>
+
+        <div class="input-group pm-input mb-3">
+          <span class="input-group-text"><i class="bi bi-link-45deg"></i></span>
+          <input
+            id="img"
+            class="form-control"
+            placeholder="Image URL (https://...)"
+          />
+        </div>
+        <small class="error" data-err="img"></small>
+
+        <div class="input-group pm-input mb-3">
+          <span class="input-group-text"><i class="bi bi-chat-dots"></i></span>
+          <input id="desc" class="form-control" placeholder="Description" />
+        </div>
+        <small class="error" data-err="desc"></small>
+
+        <div class="input-group pm-input mb-4">
+          <span class="input-group-text"><i class="bi bi-gear"></i></span>
+          <select id="type" class="form-select">
+            <option value="" selected disabled>Select brand</option>
+            <option value="Apple">Apple</option>
+            <option value="Samsung">Samsung</option>
+          </select>
+        </div>
+        <small class="error" data-err="type"></small>
+
+        <div class="pm-actions d-flex justify-content-end gap-2">
+          <button type="submit" class="btn btn-teal" id="btnSubmit">
+            Add Phone
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            id="btnCancel"
+          >
+            Close
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="../controller/controller.js"></script>
+  </body>
+</html>
