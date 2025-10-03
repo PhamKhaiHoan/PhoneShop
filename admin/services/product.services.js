@@ -1,6 +1,6 @@
 import { http } from "./http.js";
 
-const PATH_CANDIDATES = ["/api/v1/products", "/products"];
+const PATH_CANDIDATES = ["/Products", "/products", "/api/v1/products"];
 let ACTIVE_PATH = null;
 
 async function resolvePath() {
@@ -11,11 +11,13 @@ async function resolvePath() {
       ACTIVE_PATH = p;
       return p;
     } catch (e) {
-      if (e?.response?.status === 404) continue; 
+      if (e?.response?.status === 404) continue;
       throw e;
     }
   }
-  throw new Error("Không tìm thấy endpoint MockAPI cho 'products'. Hãy kiểm tra resource name.");
+  throw new Error(
+    "Không tìm thấy endpoint MockAPI cho 'Products'. Hãy kiểm tra resource name."
+  );
 }
 
 export const productService = {
