@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Client Website</title>
+    <title>PhoneShop - Khách Hàng</title>
     <!-- Bootstrap 5 -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -11,21 +11,102 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="stylesheet" href="../../assets/css/user-modal.css" />
   </head>
-  <body>
-    <h2>Danh sách sản phẩm</h2>
-    <!-- Dropdown filter -->
-    <label for="filter">Lọc theo loại:</label>
-    <select id="filter">
-      <option value="all">Tất cả</option>
-      <option value="samsung">Samsung</option>
-      <option value="iphone">iPhone</option>
-    </select>
+  <body class="user-page-body">
+    <!-- Header -->
+    <header class="user-header">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <h1 class="page-title">📱 PhoneShop - Khách Hàng</h1>
+          <div>
+            <a href="../../admin/view/admin.html" class="btn-back">🔧 Admin</a>
+            <a href="../../homepage.html" class="btn-back">🏠 Trang Chủ</a>
+          </div>
+        </div>
+      </div>
+    </header>
 
-    <ul id="product-list"></ul>
+    <!-- Main Content -->
+    <main class="main-content">
+      <div class="container">
+        <!-- Products Section -->
+        <section class="products-section">
+          <div class="section-header">
+            <h2 class="section-title">📱 Danh Sách Sản Phẩm</h2>
+            <div class="filter-container">
+              <label for="filter" class="filter-label">Filter:</label>
+              <select id="filter" class="form-select filter-select">
+                <option value="all">Tất cả</option>
+                <option value="samsung">Samsung</option>
+                <option value="iphone">IPhone</option>
+              </select>
+            </div>
+          </div>
+          <div id="product-list" class="product-grid"></div>
+        </section>
 
-    <h2>🛒 Giỏ hàng</h2>
-    <ul id="cart-list"></ul>
+        <!-- Cart Button -->
+        <section class="cart-button-section">
+          <div class="cart-summary">
+            <button class="cart-toggle-btn" onclick="toggleCartModal()">
+              🛒 Giỏ Hàng<span id="cart-count">0</span>
+            </button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="cart-modal">
+      <div class="cart-modal-content">
+        <div class="cart-modal-header">
+          <h2 class="cart-modal-title">🛒 Giỏ Hàng</h2>
+          <button class="cart-modal-close" onclick="toggleCartModal()">
+            &times;
+          </button>
+        </div>
+
+        <div class="cart-modal-body">
+          <div id="cart-actions" class="cart-actions" style="display: none">
+            <button class="btn btn-checkout" onclick="checkout()">
+              💳 Thanh Toán
+            </button>
+            <button class="btn btn-clear" onclick="clearCart()">
+              🗑️ Xóa Toàn Bộ
+            </button>
+          </div>
+
+          <div class="cart-container">
+            <table id="cart-table" class="cart-table" style="display: none">
+              <thead>
+                <tr>
+                  <th>Hình Ảnh</th>
+                  <th>Tên Sản Phẩm</th>
+                  <th>Đơn Giá</th>
+                  <th>Số Lượng</th>
+                  <th>Thành Tiền</th>
+                  <th>Thao Tác</th>
+                </tr>
+              </thead>
+              <tbody id="cart-list"></tbody>
+              <tfoot>
+                <tr id="cart-total" class="cart-total-row">
+                  <td colspan="5">Tổng Cộng:</td>
+                  <td id="total-amount">0$</td>
+                </tr>
+              </tfoot>
+            </table>
+            <div id="empty-cart" class="empty-cart" style="display: block">
+              <p>🛒 Giỏ hàng trống</p>
+              <small>Hãy thêm sản phẩm vào giỏ hàng</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Axios -->
     <script
